@@ -1,5 +1,6 @@
 package ie.gmit.ds;
 
+import io.grpc.BindableService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import java.io.IOException;
@@ -13,7 +14,7 @@ public class PasswordServiceServer {
     /** Starting the Server */
     private void start() throws IOException {
         grpcServer = ServerBuilder.forPort(PORT)
-                .addService(new PasswordServiceImpl())
+                .addService((BindableService) new PasswordServiceImpl())
                 .build()
                 .start();
         logger.info("Server started, listening on " + PORT);
