@@ -35,7 +35,6 @@ public class UserResource {
 
 	}
 
-	// Method that returns a list of users.
 	@GET
 	public List<UserResponse> getUsers() {
 		return new ArrayList<UserResponse>(userMapResponse.values());
@@ -92,15 +91,12 @@ public class UserResource {
 
 	}
 
-	// Method that removes a user from the map.
 	@Path("/{userId}")
 	@DELETE
 	public Response deleteUser(@PathParam("userId") int id) {
-		// If the User doesn't exist.
 		if (userMapResponse.get(id) == null) {
 			return Response.status(Response.Status.NOT_FOUND).build();
 		}
-		// If the User exists delete it from the map.
 		else {
 			userMapResponse.remove(id);
 			return Response.ok().build();
